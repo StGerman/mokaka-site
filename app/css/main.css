@@ -15,6 +15,7 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+  background-color: #222;
 }
 
 /*
@@ -263,3 +264,9 @@ textarea {
   }
 }
 
+#newroom {
+  margin: auto;
+  background: url(./video.gif) no-repeat center center;
+  height: 800px;
+
+}
