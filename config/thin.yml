@@ -1,0 +1,7 @@
+pid: tmp/pids/thin.pid
+port: 3000
+address: 0.0.0.0
+workers: 1
+max_conns: 50
+max_persistent_conns: 40
+tag: pimp_gulag
