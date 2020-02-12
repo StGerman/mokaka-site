@@ -286,5 +286,6 @@ textarea {
 #logo {
   position: absolute;
   left: 0;
-  width: 220px;
+  width: 110px;
+  opacity: 0.3;
 }
