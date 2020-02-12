@@ -11,7 +11,7 @@
    html {
     font-size: 20px;
     line-height: 1.4;
-    background-color: #222;
+    background-color: #191919;
     font-family: 'Oswald', sans-serif;
     color: yellow;
   }
@@ -232,10 +232,23 @@
   }
   #newroom {
     margin: auto;
-    background: url(/img/video.gif) no-repeat center center;
-    height: 800px;
+    background: url(/img/video.gif) no-repeat bottom center;
+    height: 600px;
+    text-align: center;
   }
   #logElem{
     margin: auto;
     width: 800px;
+    display: inline-block;
+    vertical-align: bottom;
+  }
+  #newsline{
+    margin: auto;
+    width: 100%;
+    text-align: center;
+  }
+  #logo{
+    position: absolute;
+    left: 0;
+    width: 220px;
   }
