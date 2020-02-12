@@ -1,32 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    agoo (2.12.0)
-    byebug (11.1.1)
-    ffi (1.12.2)
-    ffi-rzmq (2.0.7)
-      ffi-rzmq-core (>= 1.0.7)
-    ffi-rzmq-core (1.0.7)
-      ffi
-    gorsse (0.0.1)
-      ffi-rzmq
-    iodine (0.7.38)
     rack (2.2.2)
     roda (3.28.0)
       rack
-    sse-rails (0.0.2)
     tts (0.7.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  agoo
-  byebug
-  gorsse
-  iodine
   roda
-  sse-rails
   tts
 
 BUNDLED WITH

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'roda'
 require 'byebug'
 require 'json'
@@ -8,50 +9,51 @@ require 'singleton'
 
 class MessageStack
   include Singleton
-  
+
   def initialize
     @messages = []
     super
   end
 
-  def message
-    @messages.shift
+  def message(from = 0)
+    @messages[from..-1]
   end
 
   def message=(payload)
-    @messages.unshift(payload)
+    @messages << payload
   end
 end
 
 class NewsPerformer
-  def self.perform(message)
-    method = message.include?('voice-it') ? :voice : :text
-    case method
-    when :voice
-      base64_string = prepare_voice_message(message)
-      send_to_site(base64_string, method)
-    when :text
-      send_to_site(message, method)
+  class << self
+    def perform(message)
+      type = message.include?('voice-it') ? :voice : :text
+      case type
+      when :voice
+        base64_string = prepare_voice_message(message)
+        pack(base64_string, type)
+      when :text
+        pack(message, type)
+      end
     end
-  end
 
-  private
+    private
 
-  def self.send_to_site(message, method)
-    MessageStack.instance.message = "#{message}=>#{method}"
-  end
-
-  def self.prepare_voice_message(message)
-    voice_file_path = Dir.pwd + '/message_' + hash.to_s + 'voice.mp3'
-    message.gsub!('voice-it', '')
-    message.to_file('ru', voice_file_path)
-    if File.exists?(voice_file_path)
-      mp3 = File.read(voice_file_path)
-      base64_string = Base64.encode64(mp3)
-      return base64_string
+    def pack(message, type)
+      [message, type]
     end
-  ensure
-    File.delete(voice_file_path) if File.exists?(voice_file_path)
+
+    def prepare_voice_message(message)
+      voice_file_path = Dir.pwd + '/message_' + hash.to_s + 'voice.mp3'
+      message.gsub!('voice-it', '')
+      message.to_file('ru', voice_file_path)
+      if File.exist?(voice_file_path)
+        mp3 = File.read(voice_file_path)
+        'data:audio/mp3;base64,' + Base64.encode64(mp3)
+      end
+    ensure
+      File.delete(voice_file_path) if File.exist?(voice_file_path)
+    end
   end
 end
 
@@ -66,26 +68,21 @@ class Mokaka < Roda
 
     r.get do
       r.on 'news' do
+        from = r.params['from'].to_i
         stack = MessageStack.instance
-        message = stack.message
+        messages = stack.message(from)
         response.headers['Content-Type'] = 'application/json'
         response.status = 200
-        if message
-          text, type = message.split("=>")
-          { data: text, type: type}.to_json
-        else
-          response.status = 404
-          '{"data": false, "type":false}'
-        end
+        { data: messages }.to_json
       end
     end
 
     r.post do
       r.on 'slack' do
         payload = JSON.parse(r.body.read)
-        message = payload.dig(*%w[event text])
+        message = payload.dig('event', 'text')
         stack = MessageStack.instance
-        stack.message= NewsPerformer.perform(message) if message
+        stack.message = NewsPerformer.perform(message) if message
         response.status = 200
         payload['challenge']
       end
