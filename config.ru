@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'roda'
-require 'byebug'
 require 'json'
 require 'tts'
 require 'base64'
