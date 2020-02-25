@@ -16,7 +16,12 @@
 </head>
 
 <body>
-  <div id="newroom"><img id="logo" src="/img/logo.jpg"></div>
+  <div id="videoContainer">
+    <div id="newroom">
+      <img id="logo" src="/img/logo.jpg">
+    </div>
+  </div>
+  
   <div id="newsline">
     <marquee align="bottom" onload="start()" behavior="scroll" direction="left" id="logElem"></marquee>
   </div>
@@ -26,9 +31,13 @@
   <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
   </script>
+  
+  
+  <audio id="audio_message" src=""></audio>
+
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
-  <audio id="audio_message" src=""></audio>
+  
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
     window.ga = function () {
