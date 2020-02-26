@@ -16,16 +16,21 @@
 </head>
 
 <body>
-  <div id="videoContainer">
-    <div id="newroom">
-      <img id="logo" src="/img/logo.jpg">
+  <div id="particles-js" class="container">
+    <div id="videoContainer">
+      <div id="newroom">
+        <img id="logo" src="/img/logo.jpg">
+      </div>
+    </div>
+    
+    <div id="newsline">
+      <marquee align="bottom" onload="start()" behavior="scroll" direction="left" id="logElem"></marquee>
     </div>
   </div>
   
-  <div id="newsline">
-    <marquee align="bottom" onload="start()" behavior="scroll" direction="left" id="logElem"></marquee>
-  </div>
+
   <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+  <script src="js/vendor/particles.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script>
