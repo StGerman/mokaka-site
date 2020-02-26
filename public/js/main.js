@@ -9,6 +9,18 @@ curr_inx_message = 0;
 audio = new Audio();
 audio.addEventListener("ended", audio_ended);
 audios = [];
+firevideoids = [
+  "Ams_4N0MecY",
+  "3cSqRMioRik",
+  "tXug39t8lx4",
+  "Va54xMmvKKI",
+  "rw9-Nd6u5KA",
+  "rPVz3aJtYYs",
+  "2Z-ffUnxcLs",
+  "26k46kr-PFw",
+  "SUBO8YPmGdE",
+  "HzqW5CfKVLE"
+];
 
 function clear_news_line() {
   logElem.innerHTML = "";
@@ -88,12 +100,14 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-  event.target.loadVideoById("3cSqRMioRik");
+  var videoId = firevideoids[Math.floor(Math.random() * firevideoids.length)];
+  event.target.loadVideoById(videoId);
 }
 
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.ENDED) {
-    event.target.loadVideoById("3cSqRMioRik");
+    var videoId = firevideoids[Math.floor(Math.random() * firevideoids.length)];
+    event.target.loadVideoById(videoId);
   }
 }
 
