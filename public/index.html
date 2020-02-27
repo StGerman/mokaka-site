@@ -16,19 +16,33 @@
 </head>
 
 <body>
-  <div id="newroom"><img id="logo" src="/img/logo.jpg"></div>
-  <div id="newsline">
-    <marquee align="bottom" onload="start()" behavior="scroll" direction="left" id="logElem"></marquee>
+  <div id="particles-js" class="container">
+    <div id="videoContainer">
+      <div id="newroom">
+        <img id="logo" src="/img/logo.jpg">
+      </div>
+    </div>
+    
+    <div id="newsline">
+      <marquee align="bottom" onload="start()" behavior="scroll" direction="left" id="logElem"></marquee>
+    </div>
   </div>
+  
+
   <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+  <script src="js/vendor/particles.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
   </script>
+  
+  
+  <audio id="audio_message" src=""></audio>
+
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
-  <audio id="audio_message" src=""></audio>
+  
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
     window.ga = function () {
