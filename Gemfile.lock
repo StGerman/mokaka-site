@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    rack (2.2.2)
+    rack (3.0.4.1)
     roda (3.28.0)
       rack
     tts (0.7.1)
